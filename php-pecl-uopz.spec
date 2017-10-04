@@ -7,7 +7,7 @@
 Summary:	User Operations for Zend
 Name:		%{php_name}-pecl-%{modname}
 Version:	5.0.2
-Release:	1
+Release:	2
 License:	PHP 3.01
 Group:		Development/Languages/PHP
 Source0:	https://pecl.php.net/get/%{modname}-%{version}.tgz
@@ -23,6 +23,7 @@ BuildRequires:	%{php_name}-session
 BuildRequires:	%{php_name}-spl
 %endif
 %{?requires_php_extension}
+Requires:	%{php_name}-spl
 Provides:	php(uopz) = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,6 +58,7 @@ phpize
 # simple module load test
 %{__php} -n -q \
 	-d extension_dir=modules \
+	-d extension=%{php_extensiondir}/spl.so \
 	-d extension=%{modname}.so \
 	-m > modules.log
 grep %{modname} modules.log
@@ -69,10 +71,9 @@ export NO_INTERACTION=1 REPORT_EXIT_STATUS=1 MALLOC_CHECK_=2
 	PHP_TEST_SHARED_SYSTEM_EXTENSIONS="pcre spl session" \
 	RUN_TESTS_SETTINGS="-q $*"
 EOF
-
 chmod +x run-tests.sh
-./run-tests.sh -w failed.log
-test -f failed.log -a ! -s failed.log
+
+./run-tests.sh
 %endif
 
 %install
