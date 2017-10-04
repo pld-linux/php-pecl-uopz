@@ -6,15 +6,15 @@
 %define		modname	uopz
 Summary:	User Operations for Zend
 Name:		%{php_name}-pecl-%{modname}
-Version:	2.0.7
+Version:	5.0.2
 Release:	1
 License:	PHP 3.01
 Group:		Development/Languages/PHP
-Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
-# Source0-md5:	da0c3def649eec77191d005c53ee0a91
-URL:		http://pecl.php.net/package/uopz
+Source0:	https://pecl.php.net/get/%{modname}-%{version}.tgz
+# Source0-md5:	017d5b778e404fd5c324552c83b84b60
+URL:		https://pecl.php.net/package/uopz
 %{?with_tests:BuildRequires:    %{php_name}-cli}
-BuildRequires:	%{php_name}-devel >= 4:5.4.0
+BuildRequires:	%{php_name}-devel >= 4:7.0.0
 BuildRequires:	rpmbuild(macros) >= 1.666
 %if %{with tests}
 BuildRequires:	%{php_name}-cli
