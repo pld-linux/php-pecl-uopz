@@ -7,7 +7,7 @@
 Summary:	User Operations for Zend
 Name:		%{php_name}-pecl-%{modname}
 Version:	5.0.2
-Release:	2
+Release:	3
 License:	PHP 3.01
 Group:		Development/Languages/PHP
 Source0:	https://pecl.php.net/get/%{modname}-%{version}.tgz
@@ -58,6 +58,7 @@ phpize
 # simple module load test
 %{__php} -n -q \
 	-d extension_dir=modules \
+	-d extension=%{php_extensiondir}/pcre.so \
 	-d extension=%{php_extensiondir}/spl.so \
 	-d extension=%{modname}.so \
 	-m > modules.log
